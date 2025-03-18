@@ -29,13 +29,12 @@ function Home() {
 
     const updatedUser = { ...currentUser, role: selectedRole };
     setCurrentUser(updatedUser);
-    localStorage.setItem("userRole", selectedRole); // Save role persistently
+    localStorage.setItem("userRole", selectedRole);
     setHasSelectedRole(true);
 
     try {
       let res = null;
       if (selectedRole === "admin") {
-        // For admin, we'll navigate directly without creating a user record
         navigate('/admin-profile');
         return;
       } else if (selectedRole === "author") {
@@ -49,10 +48,18 @@ function Home() {
         if (error) {
           setError(error);
           setHasSelectedRole(false);
+          setCurrentUser(prev => ({ ...prev, role: "" }));
+          localStorage.removeItem("userRole");
           return;
         }
         if (message === selectedRole) {
           setCurrentUser((prevUser) => ({ ...prevUser, ...payload }));
+        } else if (message === "Account blocked") {
+          setError("Your account is blocked. Please contact admin");
+          setHasSelectedRole(false);
+          setCurrentUser(prev => ({ ...prev, role: "" }));
+          localStorage.removeItem("userRole");
+          return;
         } else {
           setError("Invalid role selection response");
           setHasSelectedRole(false);
@@ -60,8 +67,11 @@ function Home() {
       }
     } catch (error) {
       console.error("Error during role selection:", error.response?.data || error.message);
-      setError(error.response?.data?.error || error.response?.data?.message || "An error occurred during role selection");
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || "An error occurred during role selection";
+      setError(errorMessage);
       setHasSelectedRole(false);
+      setCurrentUser(prev => ({ ...prev, role: "" }));
+      localStorage.removeItem("userRole");
     }
   }
 
@@ -115,6 +125,7 @@ function Home() {
                     value="user"
                     id="userRole"
                     onChange={onSelectRole}
+                    disabled={!!error && error.includes("blocked")}
                   />
                   <label className="form-check-label" htmlFor="userRole">
                     User - Read and comment on articles
@@ -129,6 +140,7 @@ function Home() {
                     value="author"
                     id="authorRole"
                     onChange={onSelectRole}
+                    disabled={!!error && error.includes("blocked")}
                   />
                   <label className="form-check-label" htmlFor="authorRole">
                     Author - Write and publish articles

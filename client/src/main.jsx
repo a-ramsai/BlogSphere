@@ -15,6 +15,7 @@ import PostArticle from './components/author/PostArticle.jsx'
 import UserAuthorContext from './context/userAuthorContext.jsx';
 import AdminProfile from './components/admin/AdminProfile.jsx'
 import AdminUsers from './components/admin/AdminUsers.jsx'
+import BlockedUser from './components/common/BlockedUser.jsx'
 
 const browserRouteObj= createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const browserRouteObj= createBrowserRouter([
       {
         path:"signup",
         element:<Signup/>
+      },
+      {
+        path:"blocked",
+        element:<BlockedUser/>
       },
       {
         path:"user-profile/:email",
