@@ -1,0 +1,250 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+a{
+  color: aliceblue;
+}
+.white
+{
+  color: white;
+}
+.stylish-profile {
+  /* background: linear-gradient(135deg, #ededed, #8E2DE2); Deep Purple Gradient */
+  border-radius: 15px; /* Softer Corners */
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Soft Shadow */
+}
+
+
+
+.profile-img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white; /* Clean White Border */
+}
+
+.username-text {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Better Text Visibility */
+}
+
+/* Signout Button Styling */
+.signout-btn {
+  background: #D32F2F; /* Darker Red */
+  color: white;
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: none;
+  display: block;
+  margin: auto;
+  height: 3.5rem;
+  text-align: center;
+  display: flex;
+}
+
+
+
+
+
+.c{
+  margin: 0;
+}
+
+/* Profile Container */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: #121212; /* Dark Background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  width: 280px;
+  margin: auto;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 100%;
+  background: linear-gradient(135deg, #1e1e1e, #333333);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 18px rgba(255, 255, 255, 0.1);
+}
+
+/* Profile Image */
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #444;
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-img:hover {
+  border-color: #ffcc00; /* Highlight on Hover */
+}
+
+/* Username */
+.username-text {
+  margin-top: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Role Selection */
+.role-selection {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom Radio Styling */
+.radio-option {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hide Default Radio */
+.radio-option input {
+  display: none;
+}
+
+/* Custom Radio Button */
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #888;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+/* Checked State */
+.radio-option input:checked + .custom-radio {
+  border-color: #ffcc00;
+  background: radial-gradient(circle, #ffcc00 30%, transparent 50%);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+}
+
+/* Hover Effect */
+.radio-option:hover .custom-radio {
+  border-color: #ffcc00;
+}
+
+/* Dark Theme & Futuristic Styling */
+body {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.futuristic-card {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #00ffff;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.futuristic-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* Author Image */
+.author-img {
+  border: 2px solid cyan;
+  margin-right: 10px;
+}
+
+/* Read More Button */
+.futuristic-btn {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid cyan;
+  color: cyan;
+  padding: 10px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.futuristic-btn:hover {
+  background-color: cyan;
+  color: black;
+  box-shadow: 0 0 15px cyan;
+}
+
+/* Card Footer */
+.card-footer {
+  background-color: #222222;
+  border-top: 1px solid cyan;
+}
+
+/* Loading & Error States */
+.futuristic-loading {
+  font-size: 1.5rem;
+  margin-top: 50px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+.futuristic-error {
+  font-size: 1.3rem;
+  margin-top: 50px;
+  color: red;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
