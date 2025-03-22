@@ -11,11 +11,11 @@ app.use(cors());
 
 
 const port = process.env.PORT || 4000;
-
+const frontendUrl='https://blogsphere-aln7.onrender.com'
 
 
 mongoose.connect(process.env.DBURL)
-.then(()=> app.listen(port,()=>console.log(`server Listening on port ${port}`)))
+.then(()=> app.listen(frontendUrl,()=>console.log(`server Listening on port ${port}`)))
 .catch(err=>console.log('error in DB',err))
 
 
