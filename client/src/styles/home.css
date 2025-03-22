@@ -1,0 +1,209 @@
+/* General Styling */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+  
+/* Home Container */
+.home-container {
+    text-align: center;
+    padding: 0;
+}
+  
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1a1a1a 30%, #000 100%);
+    padding: 120px 20px;
+    text-align: center;
+}
+  
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+  
+.hero p {
+    font-size: 1.2rem;
+    color: #bbb;
+    max-width: 600px;
+    margin: 0 auto;
+}
+  
+.cta-button {
+    background: #00d4ff;
+    color: #000;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 212, 255, 0.8);
+}
+  
+.cta-button:hover {
+    background: #fff;
+    color: #000;
+}
+  
+/* Features Section */
+.features {
+    background: #1a1a1a;
+    padding: 60px 20px;
+}
+  
+.features h2 {
+    color: #00d4ff;
+    margin-bottom: 30px;
+}
+  
+.features-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+  
+.feature-item {
+    background: #222;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 0px 12px rgba(0, 212, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+  
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+  
+.feature-item h3 {
+    color: #00d4ff;
+}
+  
+/* Role Selection */
+.role-selection-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 2rem;
+}
+
+.profile-section {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.5rem;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #333;
+    margin-bottom: 1rem;
+}
+
+.user-name {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.role-heading {
+    color: #00d4ff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.role-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.role-option {
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.role-option:hover {
+    background: #2a2a2a;
+    border-color: #00d4ff;
+}
+
+.role-option.selected {
+    background: #2a2a2a;
+    border-color: #00d4ff;
+}
+
+.role-option label {
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.role-option input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #00d4ff;
+}
+
+.role-description {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid #dc3545;
+    color: #ff6b6b;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Testimonials */
+.testimonials {
+    background: #1a1a1a;
+    padding: 60px 20px;
+}
+  
+.testimonials h2 {
+    color: #00d4ff;
+}
+  
+.testimonial {
+    max-width: 600px;
+    margin: 20px auto;
+    font-style: italic;
+    border-left: 3px solid #00d4ff;
+    padding-left: 20px;
+}
+  
+/* Footer */
+.footer {
+    background: #000;
+    color: #bbb;
+    text-align: center;
+    padding: 20px;
+}
+  
+.footer p {
+    margin: 0;
+}
+  

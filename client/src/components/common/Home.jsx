@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { UserAuthorContextObj } from "../../context/userAuthorContext";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/home.css";
+import "../../styles/roleSelection.css";
 
 function Home() {
   const { currentUser, setCurrentUser } = useContext(UserAuthorContextObj);
   const { isSignedIn, isLoaded, user } = useUser();
   const [error, setError] = useState("");
-  const [hasSelectedRole, setHasSelectedRole] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function Home() {
         lastName: user.lastName || "",
         email: user.emailAddresses?.[0]?.emailAddress || "",
         profileImageUrl: user.imageUrl || "",
-        role: "",  // Reset role on initial load
+        role: "",
       }));
     }
   }, [isLoaded, user, setCurrentUser]);
@@ -30,7 +32,6 @@ function Home() {
     const updatedUser = { ...currentUser, role: selectedRole };
     setCurrentUser(updatedUser);
     localStorage.setItem("userRole", selectedRole);
-    setHasSelectedRole(true);
 
     try {
       let res = null;
@@ -46,118 +47,149 @@ function Home() {
       if (res) {
         const { message, payload, error } = res.data;
         if (error) {
+          if (error.includes('blocked')) {
+            setCurrentUser(prev => ({ ...prev, role: "" }));
+            localStorage.removeItem("userRole");
+            navigate('/blocked');
+            return;
+          }
           setError(error);
-          setHasSelectedRole(false);
           setCurrentUser(prev => ({ ...prev, role: "" }));
           localStorage.removeItem("userRole");
           return;
         }
         if (message === selectedRole) {
           setCurrentUser((prevUser) => ({ ...prevUser, ...payload }));
+          if (selectedRole === "user") {
+            navigate(`/user-profile/${updatedUser.email}`);
+          } else if (selectedRole === "author") {
+            navigate(`/author-profile/${updatedUser.email}`);
+          }
         } else if (message === "Account blocked") {
-          setError("Your account is blocked. Please contact admin");
-          setHasSelectedRole(false);
           setCurrentUser(prev => ({ ...prev, role: "" }));
           localStorage.removeItem("userRole");
+          navigate('/blocked');
           return;
         } else {
           setError("Invalid role selection response");
-          setHasSelectedRole(false);
         }
       }
     } catch (error) {
-      console.error("Error during role selection:", error.response?.data || error.message);
       const errorMessage = error.response?.data?.error || error.response?.data?.message || "An error occurred during role selection";
+      if (errorMessage.includes('blocked')) {
+        setCurrentUser(prev => ({ ...prev, role: "" }));
+        localStorage.removeItem("userRole");
+        navigate('/blocked');
+        return;
+      }
       setError(errorMessage);
-      setHasSelectedRole(false);
       setCurrentUser(prev => ({ ...prev, role: "" }));
       localStorage.removeItem("userRole");
     }
   }
 
-  useEffect(() => {
-    if (!currentUser || !hasSelectedRole || error) return;
-
-    if (currentUser.role === "user") {
-      navigate(`/user-profile/${currentUser.email}`, { replace: true });
-    } else if (currentUser.role === "author") {
-      navigate(`/author-profile/${currentUser.email}`, { replace: true });
-    }
-  }, [currentUser, hasSelectedRole, error, navigate]);
-
   return (
     <div className="container">
-      {isSignedIn === false && (
-        <div className="text-center mt-5">
-          <h2 className="mb-4">Welcome to the Blog App</h2>
-          <p className="lead">
-            Sign in to read articles, share your thoughts, or become an author and start writing!
-          </p>
-        </div>
-      )}
-
-      {isSignedIn === true && (
-        <div className="d-flex justify-content-center align-items-center min-vh-100">
-          <div className="card bg-dark text-light p-5 rounded-4 shadow-lg border border-warning">
-            <div className="text-center mb-4">
-              <img 
-                src={user?.imageUrl} 
-                alt="Profile" 
-                className="rounded-circle mb-3" 
-                style={{width: "100px", height: "100px", objectFit: "cover"}}
-              />
-              <h3 className="text-warning mb-4">{user?.fullName || "Guest"}</h3>
-              {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
+      {!isSignedIn ? (
+        <>
+          <section className="hero">
+            <div className="hero-content">
+              <h1>Welcome to BlogSphere</h1>
+              <p>Read. Write. Inspire. Join a community of passionate readers and writers.</p>
+              <button className="cta-button" onClick={() => navigate("/signin")}>Get Started</button>
             </div>
+          </section>
 
-            <div className="text-center">
-              <h4 className="mb-4">Choose your role</h4>
-              <div className="d-flex flex-column gap-3">
-                <div className="form-check">
+          {/* Features Section */}
+          <section className="features">
+            <h2>Why Choose BlogSphere?</h2>
+            <div className="features-grid">
+              <div className="feature-item">
+                <h3>📝 Write & Share</h3>
+                <p>Express your thoughts and publish your ideas effortlessly.</p>
+              </div>
+              <div className="feature-item">
+                <h3>📚 Explore Articles</h3>
+                <p>Discover stories from talented writers worldwide.</p>
+              </div>
+              <div className="feature-item">
+                <h3>💬 Connect & Engage</h3>
+                <p>Join conversations and interact with writers.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section className="testimonials">
+            <h2>What Our Users Say</h2>
+            <div className="testimonial">
+              <p>"BlogSphere has transformed the way I share my ideas with the world!"</p>
+              <p>- Ramesh, Author</p>
+            </div>
+            <div className="testimonial">
+              <p>"A fantastic platform for readers and writers alike. Highly recommend!"</p>
+              <p>- Prakesh, Reader</p>
+            </div>
+          </section>
+        </>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center min-vh-100">
+          <div className="role-card">
+            <div className="role-card-body">
+              <div className="profile-section">
+                <img 
+                  src={user?.imageUrl} 
+                  alt="Profile" 
+                  className="profile-image"
+                />
+                <h3 className="user-name">{user?.fullName || "Guest"}</h3>
+                {error && (
+                  <div className="error-alert">
+                    {error}
+                  </div>
+                )}
+              </div>
+
+              <h4 className="role-heading">Select Your Role</h4>
+              <div className="role-options">
+                <div className="role-option">
                   <input
                     type="radio"
-                    className="form-check-input"
                     name="role"
                     value="user"
                     id="userRole"
                     onChange={onSelectRole}
                     disabled={!!error && error.includes("blocked")}
                   />
-                  <label className="form-check-label" htmlFor="userRole">
-                    User - Read and comment on articles
+                  <label className="role-label" htmlFor="userRole">
+                    User
                   </label>
                 </div>
 
-                <div className="form-check">
+                <div className="role-option">
                   <input
                     type="radio"
-                    className="form-check-input"
                     name="role"
                     value="author"
                     id="authorRole"
                     onChange={onSelectRole}
                     disabled={!!error && error.includes("blocked")}
                   />
-                  <label className="form-check-label" htmlFor="authorRole">
-                    Author - Write and publish articles
+                  <label className="role-label" htmlFor="authorRole">
+                    Author
                   </label>
                 </div>
 
-                <div className="form-check">
+                <div className="role-option">
                   <input
                     type="radio"
-                    className="form-check-input"
                     name="role"
                     value="admin"
                     id="adminRole"
                     onChange={onSelectRole}
                   />
-                  <label className="form-check-label" htmlFor="adminRole">
-                    Admin - Manage users and content
+                  <label className="role-label" htmlFor="adminRole">
+                    Admin
                   </label>
                 </div>
               </div>
