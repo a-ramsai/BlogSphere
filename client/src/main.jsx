@@ -12,7 +12,7 @@ import Articles from './components/common/Articles.jsx'
 import ArticleByID from './components/common/ArticleByID.jsx'
 import AuthorProfile from './components/author/AuthorProfile.jsx'
 import PostArticle from './components/author/PostArticle.jsx'
-import UserAuthorContext from './context/userAuthorContext.jsx';
+import UserAuthorContext from './context/UserAuthorContext.jsx';
 import AdminProfile from './components/admin/AdminProfile.jsx'
 import AdminUsers from './components/admin/AdminUsers.jsx'
 import BlockedUser from './components/common/BlockedUser.jsx'
