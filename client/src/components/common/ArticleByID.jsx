@@ -29,7 +29,7 @@ function ArticleByID() {
     };
 
     let res = await axios.put(
-      `http://localhost:3000/author-api/article/${article.articleId}`,
+      `${import.meta.env.VITE_BACKEND_URL}/author-api/article/${article.articleId}`,
       updatedArticle,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -43,7 +43,7 @@ function ArticleByID() {
   const addComment = async (commentObj) => {
     commentObj.nameOfUser = currentUser.firstName;
     let res = await axios.put(
-      `http://localhost:3000/user-api/comment/${article.articleId}`,
+      `${import.meta.env.VITE_BACKEND_URL}/user-api/comment/${article.articleId}`,
       commentObj
     );
     if (res.data.message === "comment added") {

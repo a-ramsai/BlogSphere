@@ -20,7 +20,7 @@ function UserProfile() {
       try {
         const token = await getToken();
         const res = await axios.post(
-          'http://localhost:3000/user-api/user',
+          `${import.meta.env.VITE_BACKEND_URL}/user-api/user`,
           currentUser,
           {
             headers: { Authorization: `Bearer ${token}` }

@@ -21,7 +21,7 @@ function UserAuthorContext({ children }) {
         const checkUserStatus = async () => {
           try {
             const res = await axios.post(
-              `http://localhost:3000/${user.role === 'author' ? 'author' : 'user'}-api/${user.role}`,
+              `${import.meta.env.VITE_BACKEND_URL}/${user.role === 'author' ? 'author' : 'user'}-api/${user.role}`,
               user
             );
             if (res.data.error) {

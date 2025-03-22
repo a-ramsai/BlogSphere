@@ -20,7 +20,7 @@ function AuthorProfile() {
       try {
         const token = await getToken();
         const res = await axios.post(
-          'http://localhost:3000/author-api/author',
+          `${import.meta.env.VITE_BACKEND_URL}/author-api/author`,
           currentUser,
           {
             headers: { Authorization: `Bearer ${token}` }

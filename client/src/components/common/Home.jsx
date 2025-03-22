@@ -39,9 +39,9 @@ function Home() {
         navigate('/admin-profile');
         return;
       } else if (selectedRole === "author") {
-        res = await axios.post("http://localhost:3000/author-api/author", updatedUser);
+        res = await axios.post("${import.meta.env.VITE_BACKEND_URL}/author-api/author", updatedUser);
       } else if (selectedRole === "user") {
-        res = await axios.post("http://localhost:3000/user-api/user", updatedUser);
+        res = await axios.post("${import.meta.env.VITE_BACKEND_URL}/user-api/user", updatedUser);
       }
 
       if (res) {

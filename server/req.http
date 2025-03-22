@@ -1,9 +1,9 @@
 ###GET ALL 
-GET http://localhost:3000/user-api/users
+GET ${import.meta.env.VITE_BACKEND_URL}/user-api/users
 
 
 ### create author
-POST http://localhost:3000/author-api/author
+POST ${import.meta.env.VITE_BACKEND_URL}/author-api/author
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ###create user
-POST http://localhost:3000/user-api/user
+POST ${import.meta.env.VITE_BACKEND_URL}/user-api/user
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 
 ###post new article
-POST http://localhost:3000/author-api/article
+POST ${import.meta.env.VITE_BACKEND_URL}/author-api/article
 Content-Type: application/json
 
 {
@@ -55,16 +55,16 @@ Content-Type: application/json
 
 
 ### Read all articles by user
-GET http://localhost:3000/user-api/articles
+GET ${import.meta.env.VITE_BACKEND_URL}/user-api/articles
 
 
 ### Read all articles by author
-GET http://localhost:3000/author-api/articles
+GET ${import.meta.env.VITE_BACKEND_URL}/author-api/articles
 
 
 
 ### edit article by id
-PUT http://localhost:3000/author-api/article/1739706608
+PUT ${import.meta.env.VITE_BACKEND_URL}/author-api/article/1739706608
 Content-Type: application/json
 
 {
@@ -86,7 +86,7 @@ Content-Type: application/json
 }
 
 ### post comment by article id
-PUT http://localhost:3000/user-api/comment/1740112156
+PUT ${import.meta.env.VITE_BACKEND_URL}/user-api/comment/1740112156
 Content-Type: application/json
 
 {
@@ -96,7 +96,7 @@ Content-Type: application/json
 }
 
 ### delete atricle by article id
-PUT http://localhost:3000/author-api/articles/1740110029
+PUT ${import.meta.env.VITE_BACKEND_URL}/author-api/articles/1740110029
 Content-Type: application/json
 
 {

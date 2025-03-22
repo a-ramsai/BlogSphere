@@ -22,7 +22,7 @@ function Articles() {
     try {
       const token = await getToken();
       const res = await axios.post(
-        `http://localhost:3000/${currentUser.role}-api/${currentUser.role}`,
+        `${import.meta.env.VITE_BACKEND_URL}/${currentUser.role}-api/${currentUser.role}`,
         currentUser,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -56,8 +56,8 @@ function Articles() {
       }
       const token = await getToken();
       const endpoint = currentUser.role === 'author' 
-        ? "http://localhost:3000/author-api/articles"
-        : "http://localhost:3000/user-api/articles";
+        ? `${import.meta.env.VITE_BACKEND_URL}/author-api/articles`
+        : `${import.meta.env.VITE_BACKEND_URL}/user-api/articles`;
       let res = await axios.get(endpoint, { headers: { Authorization: `Bearer ${token}` } });
       if (res.data.message === "articles") {
         setArticles(res.data.payload);

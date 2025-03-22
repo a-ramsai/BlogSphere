@@ -23,7 +23,7 @@ function AdminUsers() {
     try {
       setLoading(true);
       const token = await getToken();
-      const response = await axios.get('http://localhost:3000/admin-api/users', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin-api/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data.payload);
@@ -42,7 +42,7 @@ function AdminUsers() {
       const token = await getToken();
       const encodedEmail = encodeURIComponent(email);
       const response = await axios.put(
-        `http://localhost:3000/admin-api/users/${encodedEmail}/toggle-block`,
+        `${import.meta.env.VITE_BACKEND_URL}/admin-api/users/${encodedEmail}/toggle-block`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
