@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { UserAuthorContextObj } from "../../context/userAuthorContext";
+import { UserAuthorContextObj } from "../../context/UserAuthorContext";
 import { useAuth } from '@clerk/clerk-react';
 
 export default function PostArticle() {

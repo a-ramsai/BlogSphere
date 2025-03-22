@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { UserAuthorContextObj } from '../../context/userAuthorContext';
+import { UserAuthorContextObj } from '../../context/UserAuthorContext';
 import axios from 'axios';
 import { useAuth } from '@clerk/clerk-react';
 

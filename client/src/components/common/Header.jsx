@@ -1,6 +1,6 @@
 import { SignedIn, SignIn, useClerk, useUser } from '@clerk/clerk-react'
 import {useContext,useEffect} from 'react'
-import { UserAuthorContextObj } from '../../context/userAuthorContext';
+import { UserAuthorContextObj } from '../../context/UserAuthorContext';
 import {Link, useNavigate} from 'react-router-dom'
 import { FaBlog } from "react-icons/fa";  // Font Awesome Blog Icon
 import { GiFeather } from "react-icons/gi"; // Alternative Feather Icon

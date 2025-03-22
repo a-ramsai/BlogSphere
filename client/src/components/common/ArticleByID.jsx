@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { UserAuthorContextObj } from "../../context/userAuthorContext";
+import { UserAuthorContextObj } from "../../context/UserAuthorContext";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdRestore } from "react-icons/md";
 import { useForm } from "react-hook-form";
