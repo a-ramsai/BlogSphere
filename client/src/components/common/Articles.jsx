@@ -3,7 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from '@clerk/clerk-react';
 import { useNavigate } from "react-router-dom";
-import { UserAuthorContextObj } from "../../context/";
+import { UserAuthorContextObj } from "../../context/UserAuthorContext";
 import { useContext } from 'react';
 
 function Articles() {
